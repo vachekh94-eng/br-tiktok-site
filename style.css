@@ -1,4 +1,4 @@
- @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=Manrope:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=Manrope:wght@400;500;700&family=Playfair+Display:ital,wght@1,800&display=swap');
 
 * {
   box-sizing: border-box;
@@ -54,19 +54,53 @@ body {
   z-index: 2;
   text-align: center;
   margin: max(1.5rem, 5vh) auto 0;
-  padding: 0 1.25rem;
+  padding: 1.1rem 1.25rem;
   max-width: 420px;
-  font-family: 'Space Grotesk', sans-serif;
-  font-weight: 700;
-  font-size: clamp(1.05rem, 4.5vw, 1.35rem);
-  color: #F5F5F7;
+  perspective: 500px;
+}
+
+.teaser span {
+  display: inline-block;
+  font-family: 'Playfair Display', 'Space Grotesk', serif;
+  font-weight: 800;
+  font-style: italic;
+  font-size: clamp(1.1rem, 4.8vw, 1.5rem);
+  color: #FAFAFA;
+  letter-spacing: 0.015em;
+  transform: rotateX(8deg);
+  transform-style: preserve-3d;
   text-shadow:
-    0 1px 0 #6b6b70,
-    0 2px 0 #5a5a5f,
-    0 3px 0 #49494d,
-    0 4px 6px rgba(0,0,0,0.55),
-    0 8px 16px rgba(0,0,0,0.35);
-  letter-spacing: 0.01em;
+    0 1px 0 #d9d9dc,
+    0 2px 0 #c3c3c7,
+    0 3px 0 #adadb2,
+    0 4px 0 #97979c,
+    0 5px 0 #818187,
+    0 6px 0 #6b6b71,
+    0 7px 1px rgba(0,0,0,0.2),
+    0 10px 10px rgba(0,0,0,0.5),
+    0 18px 24px rgba(0,0,0,0.45);
+  animation: teaser-emerge 2.2s cubic-bezier(.2,.9,.25,1) both, teaser-float 4.5s ease-in-out 2.2s infinite;
+}
+
+@keyframes teaser-emerge {
+  0% {
+    opacity: 0;
+    transform: rotateX(8deg) translateZ(-140px) scale(0.9);
+    text-shadow: none;
+    filter: blur(6px);
+  }
+  60% {
+    filter: blur(0);
+  }
+  100% {
+    opacity: 1;
+    transform: rotateX(8deg) translateZ(0) scale(1);
+  }
+}
+
+@keyframes teaser-float {
+  0%, 100% { transform: rotateX(8deg) translateZ(0) translateY(0); }
+  50% { transform: rotateX(6deg) translateZ(6px) translateY(-2px); }
 }
 
 .header {
@@ -92,28 +126,16 @@ body {
 .ball {
   position: relative;
   display: inline-block;
-  width: 0.85em;
-  height: 0.85em;
-  border-radius: 50%;
-  background:
-    radial-gradient(circle at 32% 28%, #ffffff 0%, #f2f2f2 28%, #d8d8d8 55%, #b3b3b3 78%, #8c8c8c 100%);
-  box-shadow:
-    inset -0.08em -0.1em 0.12em rgba(0,0,0,0.35),
-    inset 0.05em 0.05em 0.08em rgba(255,255,255,0.6),
-    0 0.08em 0.25em rgba(0,0,0,0.5);
-  vertical-align: -0.06em;
+  transform-style: preserve-3d;
+  filter: drop-shadow(0 0.08em 0.2em rgba(0,0,0,0.5));
+  animation: ball-spin 3.2s linear infinite;
+  vertical-align: -0.05em;
 }
 
-.ball::after {
-  content: "";
-  position: absolute;
-  top: 22%;
-  left: 22%;
-  width: 30%;
-  height: 30%;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.85);
-  filter: blur(1.5px);
+@keyframes ball-spin {
+  0%   { transform: rotate(0deg) scale(1); }
+  50%  { transform: rotate(180deg) scale(1.05); }
+  100% { transform: rotate(360deg) scale(1); }
 }
 
 .tag {
@@ -289,4 +311,6 @@ body {
 
 @media (prefers-reduced-motion: reduce) {
   .progress-emojis span { transition: none; }
-} 
+  .ball { animation: none; }
+  .teaser span { animation: none; opacity: 1; transform: rotateX(8deg); }
+}
