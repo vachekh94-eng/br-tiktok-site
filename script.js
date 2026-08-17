@@ -7,15 +7,16 @@ const progressPercentEl = document.getElementById('progressPercent');
 const fileLink = document.getElementById('fileLink');
 const errorMsg = document.getElementById('errorMsg');
 
-const EMOJI_COUNT = 10;
+const PROGRESS_EMOJIS = ['✌️', '🤙', '✌️', '🤙', '✌️', '🤙', '✌️'];
+const EMOJI_COUNT = PROGRESS_EMOJIS.length;
 
 function buildEmojiRow() {
   progressEmojisEl.innerHTML = '';
-  for (let i = 0; i < EMOJI_COUNT; i++) {
+  PROGRESS_EMOJIS.forEach((emoji) => {
     const span = document.createElement('span');
-    span.textContent = '🤙';
+    span.textContent = emoji;
     progressEmojisEl.appendChild(span);
-  }
+  });
 }
 
 function setProgress(percent) {
