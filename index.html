@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1">
+<meta name="theme-color" content="#0A0A0C">
+<title>BRO — скачать видео из TikTok без водяного знака</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="bg-orb bg-orb-1"></div>
+  <div class="bg-orb bg-orb-2"></div>
+
+  <header class="header">
+    <div class="logo">
+      <span class="letter letter-b">B</span><span class="hand">01 🤙 007</span><span class="letter letter-r">R</span>
+    </div>
+    <p class="tag">Билиардный профессиональный Кий</p>
+  </header>
+
+  <main class="main">
+    <div class="glass-card">
+      <form id="downloadForm" class="form" autocomplete="off">
+        <input
+          id="tiktokUrl"
+          type="url"
+          inputmode="url"
+          placeholder="https://www.tiktok.com/@..."
+          required
+        >
+        <button id="downloadBtn" type="submit">Скачать</button>
+      </form>
+
+      <div id="progressWrap" class="progress-wrap" hidden>
+        <div id="progressEmojis" class="progress-emojis"></div>
+        <div class="progress-percent"><span id="progressPercent">0</span>%</div>
+      </div>
+
+      <a id="fileLink" class="file-link" hidden download>Сохранить файл 🤙</a>
+
+      <p id="errorMsg" class="error" hidden></p>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p>Դե 1000 դրամ կտաս ախպերս ✌️</p>
+  </footer>
+
+<script src="script.js"></script>
+</body>
+</html>
